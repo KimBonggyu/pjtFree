@@ -2,10 +2,23 @@
 <html lagn="ko"
 	  xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout">
+
+	  
 	  
 	  <th:block th:fragment="configFragment">
 	  
-	  <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+	  	<link th:href="@{/css/styles.css}" rel="stylesheet" />
+    	<script th:src="@{/js/script.js}"></script>
+	  	
+	  	<!-- Favicon-->
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+        
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 	  
 	  </th:block>
 	  

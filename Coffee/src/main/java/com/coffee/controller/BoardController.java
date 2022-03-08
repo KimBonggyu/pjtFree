@@ -16,15 +16,15 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/test")
-	public ModelAndView test() {
+	public String test() {
 		
-		ModelAndView mv = new ModelAndView();
+		return "/page/main/test";
+	}
+	
+	@GetMapping("/home")
+	public String home() {
 		
-		mv.addObject("name", "BongKyu");
-		mv.addObject("phone", "010-1111-2222");
-		mv.setViewName("/page/board/test");
-		
-		return mv;
+		return "/page/main/home";
 	}
 	
 }
