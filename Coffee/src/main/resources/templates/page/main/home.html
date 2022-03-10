@@ -5,16 +5,50 @@
 	  layout:decorate="~{page/fragment/default_layout}">
 <body>
 
-
-		<div class="page_content" layout:fragment="content">
-			<h2>testpage</h2>
+	<section class="wrapper wrap-login" layout:fragment="content">
+		<div class="page-login">
+			<div class="container">
 			
-			<ul>
-				<li>test1</li>
-				<li>test2</li>
-				<li>test3</li>
-			</ul>
+				<!-- ##########################################
+				#############		로그인 form		 ##########
+				############################################## -->
+	            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+	                <div class="row align-items-stretch mb-5">
+	                    <div class="col-md-4">
+	                        <div class="form-group">
+	                            <input class="form-control" id="name" type="text" placeholder="아이디를 입력해주세요."/>
+	                        </div>
+	                        <div class="form-group mt30">
+	                            <input class="form-control" id="email" type="email" placeholder="비밀번호를 입력해주세요." data-sb-validations="required,email" />
+	                        </div>
+	                        <div class="text-center mt30">
+		                        <button class="btn btn-primary btn-xl text-uppercase">회원가입</button>
+		                        <button class="btn btn-primary btn-xl text-uppercase">로그인</button>
+	                        </div>
+	                        <div class="text-center mt30 cw">
+		                        <span>아이디 찾기</span>
+	                        </div>
+	                        <div class="text-center mt30 cw">
+		                        <span>비밀번호 찾기</span>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="col-md-4">
+	                    </div>
+	                    
+	                    <div class="col-md-4">
+	                        <div class="form-group form-group-textarea mb-md-0">
+	                            <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+	                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+	                        </div>
+	                    </div>
+	                </div>
+	                
+	            </form>
+	            
+	        </div>
 		</div>
+	</section>
 
 
 </body>
