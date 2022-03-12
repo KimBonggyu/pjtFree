@@ -18,13 +18,7 @@ public class BoardController {
 	@GetMapping("/test")
 	public String test() {
 		
-		return "/page/main/test";
-	}
-	
-	@GetMapping("/home")
-	public String home() {
-		
-		return "/page/main/home";
+		return "/page/board/test";
 	}
 	
 }
