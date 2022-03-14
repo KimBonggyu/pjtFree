@@ -13,4 +13,10 @@ public class MainController {
 		
 		return "/page/main/home";
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		
+		return "/page/main/test";
+	}
 }

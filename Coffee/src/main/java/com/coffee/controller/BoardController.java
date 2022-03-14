@@ -15,10 +15,16 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@GetMapping("/test")
-	public String test() {
+	@GetMapping("/customer")
+	public String customer() {
 		
-		return "/page/board/test";
+		return "/page/board/customer";
+	}
+	
+	@GetMapping("/notice")
+	public String notice() {
+		
+		return "/page/board/notice";
 	}
 	
 }

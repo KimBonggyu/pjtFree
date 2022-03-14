@@ -11815,6 +11815,15 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 .flex { display:flex; }
 
+.text-no-deco {
+	text-decoration: none;
+}
+
+.header-icon-text {
+	text-align: center;
+	font-size: 10px;
+}
+
 .wrapper {
 	margin-top:120px;
 	margin-bottom:120px;
