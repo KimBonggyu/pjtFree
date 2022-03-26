@@ -5,10 +5,10 @@
 <mapper namespace="com.coffee.mapper.BoardMapper">
 
 	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="brdNo">
-		/* QueryId(insertBoard)*/
+		/* QUERY_ID(insertBoard) */
 		INSERT INTO TBRD_BRD_BAS (
 			TITLE
-			, CONTENT
+			, CONTENT	
 			, WRITER
     		, VIEW_CNT
     		, NOTICE_YN
@@ -38,5 +38,25 @@
 			, #{modUrl}
 		)
 	</insert>
+	
+	<select id="selectBoardList" parameterType="String" resultType="com.coffee.entity.TbrdBrdBas">
+		/* QUERY_ID(selectBoardList) */
+		SELECT
+			BRD_NO
+			, TITLE
+		    , CONTENT
+		    , VIEW_CNT
+		    , NOTICE_YN
+		    , SECRET_YN
+		    , REG_DTS
+		FROM TBRD_BRD_BAS
+		WHERE USE_YN != 'N'
+		AND DEL_YN = 'N'
+		<if test="brdType != null and brdTyep != ''">
+			<if test="brdType eq 'notice'">
+				AND NOTICE_YN = 'Y'
+			</if>
+		</if>
+	</select>
 
 </mapper>
