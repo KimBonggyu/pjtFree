@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.coffee.entity.TbrdBrdBas;
 import com.coffee.mapper.BoardMapper;
+import com.coffee.util.EntityUtil;
 
 @Service
 public class BoardService {
@@ -15,6 +16,10 @@ public class BoardService {
 	private BoardMapper boardMapper;
 	
 	public List<TbrdBrdBas> selectBoardList(String brdType) {
+		
+		TbrdBrdBas brdDto = new TbrdBrdBas();
+		brdDto = EntityUtil.bindEntity(brdDto);
+		System.out.println(brdDto);
 		
 		return boardMapper.selectBoardList(brdType);
 	}

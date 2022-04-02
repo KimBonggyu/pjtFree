@@ -1,6 +1,6 @@
 package com.coffee.util;
 
-import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,16 +20,18 @@ public class EntityUtil {
 	   try {   BeanUtils.setProperty(entity, "modNo", "admin");   } catch (Exception ignored) { /* 에러 무시 */ }
 	   
 	   if(request == null) {
-		   try {   BeanUtils.setProperty(entity, "regUrl", "reqNullRegUrl");   } catch (Exception ignored) { /* 에러 무시 */ }
-		   try {   BeanUtils.setProperty(entity, "modUrl", "reqNullModUrl");   } catch (Exception ignored) { /* 에러 무시 */ }
+		   Optional<HttpServletRequest> req = RequestUtil.getCurrentHttpRequest();
+		   if( req.isPresent() ) {
+			   request = req.get();
+		   }
 	   }
 	   if(request != null) {
 		   try {   BeanUtils.setProperty(entity, "regUrl", request.getRequestURI());   } catch (Exception ignored) { /* 에러 무시 */ }
 		   try {   BeanUtils.setProperty(entity, "modUrl", request.getRequestURI());   } catch (Exception ignored) { /* 에러 무시 */ }
 	   }
 	   
-	   try {   BeanUtils.setProperty(entity, "regDts", new Date());   } catch (Exception ignored) { /* 에러 무시 */ }
-	   try {   BeanUtils.setProperty(entity, "modDts", new Date());   } catch (Exception ignored) { /* 에러 무시 */ }
+//	   try {   BeanUtils.setProperty(entity, "regDts", new Date());   } catch (Exception ignored) { /* 에러 무시 */ }
+//	   try {   BeanUtils.setProperty(entity, "modDts", new Date());   } catch (Exception ignored) { /* 에러 무시 */ }
 	   
 	   log.debug("newEntity: {}", entity);
 	   
