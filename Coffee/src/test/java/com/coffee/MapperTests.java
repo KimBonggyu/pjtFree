@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.coffee.entity.TbrdBrdBas;
+import com.coffee.entity.board.TbrdBrdBas;
 import com.coffee.mapper.BoardMapper;
 
 @SpringBootTest
@@ -20,6 +20,7 @@ public class MapperTests {
 		brdBas.setTitle("title111");
 		brdBas.setContent("content111");
 		brdBas.setWriter("writer111");
+		brdBas.setNoticeYn("Y");
 		
 		Long result = boardMapper.insertBoard(brdBas);
 		

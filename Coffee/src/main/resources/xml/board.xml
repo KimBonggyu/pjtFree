@@ -14,7 +14,6 @@
     		, NOTICE_YN
     		, SECRET_YN
     		, USE_YN
-    		, DEL_YN
     		, REG_NO
     		, REG_URL
     		, REG_DTS
@@ -29,17 +28,16 @@
 			, #{noticeYn}
 			, #{secretYn}
 			, #{useYn}
-			, #{delYn}
-			, #{delYn}
 			, #{regNo}
 			, #{regUrl}
 			, NOW()
 			, #{modNo}
 			, #{modUrl}
+			, NOW()
 		)
 	</insert>
 	
-	<select id="selectBoardList" parameterType="String" resultType="com.coffee.entity.TbrdBrdBas">
+	<select id="selectBoardList" parameterType="String" resultType="com.coffee.entity.board.TbrdBrdBas">
 		/* QUERY_ID(selectBoardList) */
 		SELECT
 			BRD_NO
@@ -51,12 +49,42 @@
 		    , REG_DTS
 		FROM TBRD_BRD_BAS
 		WHERE USE_YN != 'N'
-		AND DEL_YN = 'N'
 		<if test="brdType != null and brdTyep != ''">
 			<if test="brdType eq 'notice'">
 				AND NOTICE_YN = 'Y'
 			</if>
 		</if>
 	</select>
+	
+	<select id="selectBoardDetail" parameterType="Long" resultType="com.coffee.entity.board.TbrdBrdBas">
+		/* QUERY_ID(selectBoardDetail) */
+		SELECT
+			BRD_NO
+		    , TITLE
+		    , CONTENT
+		    , WRITER
+		    , VIEW_CNT
+		    , NOTICE_YN
+		    , SECRET_YN
+		    , USE_YN
+		    , REG_NO
+		    , REG_URL
+		    , REG_DTS
+		    , MOD_NO
+		    , MOD_URL
+		    , MOD_DTS
+		FROM TBRD_BRD_BAS
+		WHERE BRD_NO = #{brdNo}
+	</select>
+	
+	<update id="updateBrdViewCnt" parameterType="Long">
+		/* QUERY_ID(updateBrdViewCnt) */
+		UPDATE 
+			TBRD_BRD_BAS A
+			, (SELECT VIEW_CNT FROM TBRD_BRD_BAS WHERE BRD_NO = #{brdNo}) B
+		SET
+			A.VIEW_CNT = B.VIEW_CNT + 1
+		WHERE A.BRD_NO = #{brdNo}
+	</update>
 
 </mapper>

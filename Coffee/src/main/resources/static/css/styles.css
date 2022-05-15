@@ -11811,6 +11811,10 @@ section#contact form#contactForm :-ms-input-placeholder {
 .mr25 { margin-right:25px; }
 .mr30 { margin-right:30px; }
 
+.tar { text-align:right; }
+.tal { text-align:left; }
+.tac { text-align:center; }
+
 .cw { color:#fff; }
 
 .flex { display:flex; }

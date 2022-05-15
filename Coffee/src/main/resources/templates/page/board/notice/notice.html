@@ -19,21 +19,34 @@
                 		<col style="width:20%;"/>
                 	</colgroup>
                 	<thead>
-                		<th>번호</th>
-                		<th>제목</th>
-                		<th>조회수</th>
-                		<th>등록일</th>
+                		<tr>
+	                		<th>번호</th>
+	                		<th>제목</th>
+	                		<th>조회수</th>
+	                		<th>등록일</th>
+                		</tr>
                 	</thead>
                 	<tbody th:if="${pg != null}" th:each="board : ${pg}">
-                		<td th:text="${board.brdNo}"></td>
-                		<td th:text="${board.title}"></td>
-                		<td th:text="${board.viewCnt}"></td>
-                		<td th:text="${#strings.substring(board.regDts, 0, 10)}"></td>
+                		<tr class="noticeList"
+                			th:data-brd-no="${board.brdNo}">
+	                		<td th:text="${board.brdNo}"></td>
+	                		<td><a th:href="@{/board/notice/{brdNo}(brdNo = ${board.brdNo})}" th:text="${board.title}"></a></td>
+	                		<td th:text="${board.viewCnt}"></td>
+	                		<td th:text="${#strings.substring(board.regDts, 0, 10)}"></td>
+                		</tr>
                 	</tbody>
                 </table>
             </div>
+            
+            <div class="tar mt30">
+            	<button type="button" class="btn btn-primary mla" th:onclick="|location.href='@{/board/notice/}'|">글쓰기</button>
+            </div>
+            
         </div>
     </section>
+    
+    
+    
 	
 </body>
 </html>
