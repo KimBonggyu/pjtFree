@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorate="~{page/fragment/default_layout}">
+<body>
+
+    <section class="page-section" id="services" layout:fragment="content">
+        <div class="container" th:with="modify = ${brdDto != null}">
+            <div class="text-center mt90">
+                <h2 class="section-heading text-uppercase">공지사항</h2>
+            </div>
+            <div class="row mt90">
+                <table>
+                	<colgroup>
+                		<col style="width:15%;"/>
+                		<col style="width:35%;"/>
+                		<col style="width:15%;"/>
+                		<col style="width:35%;"/>
+                	</colgroup>
+                	<tbody>
+                		<tr>
+	                		<th>번호</th>
+	                		<td th:text="${brdDto.brdNo}"></td>
+	                		<th>조회수</th>
+	                		<td th:text="${brdDto.viewCnt}"></td>
+                		</tr>
+                		<tr>
+                			<th>제목</th>
+	                		<td>
+	                			<input type="text" class="form-control is-invalid" name="title" th:value="${brdDto.title}">
+	                		</td>
+	                		<th>등록일</th>
+	                		<td th:text="${modify ? #strings.substring(brdDto.regDts, 0, 10) : ''}">등록일</td>
+                		</tr>
+                		<tr>
+                			<th>내용</th>
+                			<td colspan="3">
+                				<textarea name="content">[[${brdDto.content}]]</textarea>
+                			</td>
+                		</tr>
+                	</tbody>
+                </table>
+            </div>
+            
+            <div class="tar mt30 text-center">
+            	<button type="button" class="btn btn-secondary">목록으로</button>
+            	<button type="button" class="btn btn-primary">수정하기</button>
+            </div>
+            
+        </div>
+    </section>    
+    
+	
+</body>
+</html>

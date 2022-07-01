@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,9 +46,9 @@ public class BoardController {
 	 * 고객센터 > 선택 카테고리 목록 > 상세 
 	 */
 	@GetMapping("/{brdType}/{brdNo}")
-	public ModelAndView selectBoard(@PathVariable("brdType") String brdType, @PathVariable("brdNo") String brdNo, ModelAndView mv) {
+	public ModelAndView selectBoard(@PathVariable("brdType") String brdType, @PathVariable("brdNo") Long brdNo, ModelAndView mv) {
 		
-		TbrdBrdBas brdBas = boardService.selectBoardDetail(Long.parseLong(brdNo));
+		TbrdBrdBas brdBas = boardService.selectBoardDetail(brdNo);
 		
 		mv.addObject("brdDto", brdBas);
 		mv.setViewName("page/board/" + brdType + "/" + brdType + "detail");
@@ -57,5 +56,20 @@ public class BoardController {
 		return mv;
 	}
 	
-	
+	/*
+	 * 고객센터 > 선택 카테고리 작성/수정 화면
+	 */
+	@GetMapping(value = {"/{brdType}/modify", "/{brdType}/modify/{brdNo}"})
+	public ModelAndView modifyBoard(@PathVariable("brdType") String brdType, @PathVariable(name="brdNo", required=false) Long brdNo, ModelAndView mv) {
+		
+		TbrdBrdBas brdBas = new TbrdBrdBas();
+		if(null != brdNo) {
+			brdBas = boardService.selectBoardDetail(brdNo);
+		}
+		
+		mv.addObject("brdDto", brdBas);
+		mv.setViewName("page/board/" + brdType + "/" + brdType + "detail");
+		
+		return mv;
+	}
 }
