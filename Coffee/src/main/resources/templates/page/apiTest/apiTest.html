@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorate="~{page/fragment/default_layout}">
+
+<body>
+
+    <section class="page-section" id="services" layout:fragment="content">
+        <div class="container">
+            <div class="text-center mt90">
+                <h2 class="section-heading text-uppercase">API Test</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                	<a class="text-no-deco" th:href="@{/apiTest/postTrackInfo}">
+	                    <span class="fa-stack fa-4x">
+	                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+	                        <i class="fas fa-grin-alt fa-stack-1x fa-inverse"></i>
+	                    </span>
+	                    <h4 class="my-3">postTrackInfo</h4>
+	                    <h5 class="my-3" style="color:black; font-size:10px;">과학기술정보통신부 우정사업본부_우체국 종적 조회</h5>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                	<a class="text-no-deco" th:href="@{/board/notice}">
+	                    <span class="fa-stack fa-4x">
+	                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+	                        <i class="fas fa-question fa-stack-1x fa-inverse"></i>
+	                    </span>
+	                    <h4 class="my-3">문의사항</h4>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                	<a class="text-no-deco" th:href="@{/board/notice}">
+	                    <span class="fa-stack fa-4x">
+	                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+	                        <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+	                    </span>
+	                    <h4 class="my-3">회원정보변경</h4>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorate="~{page/fragment/default_layout}">
+<body>
+
+    <section class="page-section" id="services" layout:fragment="content">
+        <div class="container">
+            <div class="text-center mt90">
+                <h2 class="section-heading text-uppercase">API Test</h2>
+            </div>
+            <!-- <div class="row text-center mt90">
+                <table>
+                	<colgroup>
+                		<col style="width:15%;"/>
+                		<col style="width:50%;"/>
+                		<col style="width:15%;"/>
+                		<col style="width:20%;"/>
+                	</colgroup>
+                	<thead>
+                		<tr>
+	                		<th>번호</th>
+	                		<th>제목</th>
+	                		<th>조회수</th>
+	                		<th>등록일</th>
+                		</tr>
+                	</thead>
+                	<tbody th:if="${pg != null}" th:each="board : ${pg}">
+                		<tr class="noticeList"
+                			th:data-brd-no="${board.brdNo}">
+	                		<td th:text="${board.brdNo}"></td>
+	                		<td><a th:href="@{/board/notice/{brdNo}(brdNo = ${board.brdNo})}" th:text="${board.title}"></a></td>
+	                		<td th:text="${board.viewCnt}"></td>
+	                		<td th:text="${#strings.substring(board.regDts, 0, 10)}"></td>
+                		</tr>
+                	</tbody>
+                </table>
+            </div>
+            
+            <div class="tar mt30">
+            	<button type="button" class="btn btn-primary mla" th:onclick="|location.href='@{/board/notice/modify}'|">글쓰기</button>
+            </div> -->
+            
+        </div>
+    </section>
+    
+    
+    
+	
+</body>
+</html>
