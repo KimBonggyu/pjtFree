@@ -48,7 +48,8 @@ public class BoardController {
 	@GetMapping("/{brdType}/{brdNo}")
 	public ModelAndView selectBoard(@PathVariable("brdType") String brdType, @PathVariable("brdNo") Long brdNo, ModelAndView mv) {
 		
-		TbrdBrdBas brdBas = boardService.selectBoardDetail(brdNo);
+		boardService.updateBrdViewCnt(brdNo);		// 조회수 증가
+		TbrdBrdBas brdBas = boardService.selectBoardDetail(brdNo);	// 게시글 정보
 		
 		mv.addObject("brdDto", brdBas);
 		mv.setViewName("page/board/" + brdType + "/" + brdType + "detail");

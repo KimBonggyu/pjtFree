@@ -12,7 +12,6 @@ public class TbrdBrdBas {
 	private Long viewCnt;		// 조회
 	private String noticeYn;	// 공지글 여부
 	private String secretYn;	// 비밀글 여부
-	private String useYn;		// 사용 여부
 	private String regNo;		// 작성자 번호
 	private String regUrl;		// 작성 URL
 	private String regDts;		// 작성일

@@ -35,7 +35,7 @@ public class ApiTestController {
 			
 			// 2. 오픈 API 요청 규격에 맞는 파라미터 세팅
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + "dAkFsAblXe8piTieCK5euQim2%2FwdrcmrLRTRXgTNiPmWt14f3IDvH5CODalUeBeB74ESSGLEN4Hmj4FGKfZ23Q%3D%3D");
-			urlBuilder.append("&" + URLEncoder.encode("rgist", "UTF-8") + "=" + "8690770027579");	// 등기번호 샘플데이터
+			urlBuilder.append("&" + URLEncoder.encode("rgist", "UTF-8") + "=" + "EM430859672KR");	// 등기번호 샘플데이터
 			
 			// 3. URL 객체 생성
 	        URL url = new URL(urlBuilder.toString());

@@ -34,8 +34,6 @@ public class BoardService {
 	 * 게시판 상세 
 	 */
 	public TbrdBrdBas selectBoardDetail(Long brdNo) {
-		// 조회수 증가
-		updateBrdViewCnt(brdNo);
 		return boardMapper.selectBoardDetail(brdNo);
 	}
 

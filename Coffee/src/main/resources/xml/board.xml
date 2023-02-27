@@ -13,7 +13,6 @@
     		, VIEW_CNT
     		, NOTICE_YN
     		, SECRET_YN
-    		, USE_YN
     		, REG_NO
     		, REG_URL
     		, REG_DTS
@@ -27,7 +26,6 @@
 			, #{viewCnt}
 			, #{noticeYn}
 			, #{secretYn}
-			, #{useYn}
 			, #{regNo}
 			, #{regUrl}
 			, NOW()
@@ -48,7 +46,7 @@
 		    , SECRET_YN
 		    , REG_DTS
 		FROM TBRD_BRD_BAS
-		WHERE USE_YN != 'N'
+		WHERE 1=1
 		<if test="brdType != null and brdTyep != ''">
 			<if test="brdType eq 'notice'">
 				AND NOTICE_YN = 'Y'
@@ -66,7 +64,6 @@
 		    , VIEW_CNT
 		    , NOTICE_YN
 		    , SECRET_YN
-		    , USE_YN
 		    , REG_NO
 		    , REG_URL
 		    , REG_DTS
@@ -80,11 +77,10 @@
 	<update id="updateBrdViewCnt" parameterType="Long">
 		/* QUERY_ID(updateBrdViewCnt) */
 		UPDATE 
-			TBRD_BRD_BAS A
-			, (SELECT VIEW_CNT FROM TBRD_BRD_BAS WHERE BRD_NO = #{brdNo}) B
+			TBRD_BRD_BAS
 		SET
-			A.VIEW_CNT = B.VIEW_CNT + 1
-		WHERE A.BRD_NO = #{brdNo}
+			VIEW_CNT = VIEW_CNT + 1
+		WHERE BRD_NO = #{brdNo}
 	</update>
 
 </mapper>
