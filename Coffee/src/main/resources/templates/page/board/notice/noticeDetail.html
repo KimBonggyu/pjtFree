@@ -6,6 +6,12 @@
 <body>
 
     <section class="page-section" id="services" layout:fragment="content">
+    
+    	<form name="brdForm">
+    		<input type="hidden" name="brdType" th:value="${brdType}">
+    		<input type="hidden" name="brdNo" th:value="${brdDto.brdNo}">
+    	</form>
+    
         <div class="container">
             <div class="text-center mt90">
                 <h2 class="section-heading text-uppercase">공지사항</h2>
@@ -40,13 +46,23 @@
             </div>
             
             <div class="tar mt30 text-center">
-            	<button type="button" class="btn btn-secondary">목록으로</button>
+            	<button type="button" id="btn1" class="btn btn-secondary" onclick="goList();">목록으로</button>
             	<button type="button" class="btn btn-primary">수정하기</button>
             </div>
             
         </div>
-    </section>    
-    
+        
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+		});
+		function goList() {
+			var brdForm = $("form[name=brdForm]").serializeJSON();
+			
+			location.href="[[@{/board/}]]" + brdForm.brdType;
+		}
+	</script>
 	
+    </section>
 </body>
 </html>

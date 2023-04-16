@@ -52,6 +52,7 @@ public class BoardController {
 		TbrdBrdBas brdBas = boardService.selectBoardDetail(brdNo);	// 게시글 정보
 		
 		mv.addObject("brdDto", brdBas);
+		mv.addObject("brdType", brdType);
 		mv.setViewName("page/board/" + brdType + "/" + brdType + "detail");
 		
 		return mv;
