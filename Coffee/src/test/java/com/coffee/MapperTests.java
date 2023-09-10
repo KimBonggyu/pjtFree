@@ -22,7 +22,7 @@ public class MapperTests {
 		brdBas.setWriter("writer111");
 		brdBas.setNoticeYn("Y");
 		
-		Long result = boardMapper.insertBoard(brdBas);
+//		Long result = boardMapper.insertBoard(brdBas);
 		
 		System.out.println("result ::: "+brdBas.getBrdNo());
 		

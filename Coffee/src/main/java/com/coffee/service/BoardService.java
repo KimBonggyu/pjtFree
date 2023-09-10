@@ -37,4 +37,22 @@ public class BoardService {
 		return boardMapper.selectBoardDetail(brdNo);
 	}
 
+	/*
+	 * 게시판 수정 
+	 */
+	public void modifyBrdBas(TbrdBrdBas brdBas) {
+		brdBas.setModNo("bk");
+		brdBas.setModUrl("modify");
+		boardMapper.modifyBrdBas(brdBas);
+	}
+
+	public long insertBrdBas(TbrdBrdBas brdBas) {
+		brdBas.setWriter("bk");
+		brdBas.setRegNo("bk");
+		brdBas.setRegUrl("modify");
+		brdBas.setModNo("bk");
+		brdBas.setModUrl("modify");
+		return boardMapper.insertBrdBas(brdBas);
+	}
+
 }

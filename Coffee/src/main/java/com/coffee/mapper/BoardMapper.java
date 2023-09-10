@@ -9,12 +9,14 @@ import com.coffee.entity.board.TbrdBrdBas;
 @Mapper
 public interface BoardMapper {
 	
-	public Long insertBoard(TbrdBrdBas brdBas);
-	
 	public List<TbrdBrdBas> selectBoardList(String brdType);
 
 	public TbrdBrdBas selectBoardDetail(Long brdNo);
 
 	public void updateBrdViewCnt(Long brdNo);
+
+	public void modifyBrdBas(TbrdBrdBas brdBas);
+
+	public long insertBrdBas(TbrdBrdBas brdBas);
 
 }

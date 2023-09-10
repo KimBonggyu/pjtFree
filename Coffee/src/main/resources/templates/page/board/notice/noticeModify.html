@@ -5,51 +5,113 @@
 	  layout:decorate="~{page/fragment/default_layout}">
 <body>
 
-    <section class="page-section" id="services" layout:fragment="content">
-        <div class="container" th:with="modify = ${brdDto != null}">
-            <div class="text-center mt90">
-                <h2 class="section-heading text-uppercase">공지사항</h2>
-            </div>
-            <div class="row mt90">
-                <table>
-                	<colgroup>
-                		<col style="width:15%;"/>
-                		<col style="width:35%;"/>
-                		<col style="width:15%;"/>
-                		<col style="width:35%;"/>
-                	</colgroup>
-                	<tbody>
-                		<tr>
-	                		<th>번호</th>
-	                		<td th:text="${brdDto.brdNo}"></td>
-	                		<th>조회수</th>
-	                		<td th:text="${brdDto.viewCnt}"></td>
-                		</tr>
-                		<tr>
-                			<th>제목</th>
-	                		<td>
-	                			<input type="text" class="form-control is-invalid" name="title" th:value="${brdDto.title}">
-	                		</td>
-	                		<th>등록일</th>
-	                		<td th:text="${modify ? #strings.substring(brdDto.regDts, 0, 10) : ''}">등록일</td>
-                		</tr>
-                		<tr>
-                			<th>내용</th>
-                			<td colspan="3">
-                				<textarea name="content">[[${brdDto.content}]]</textarea>
-                			</td>
-                		</tr>
-                	</tbody>
-                </table>
-            </div>
-            
-            <div class="tar mt30 text-center">
-            	<button type="button" class="btn btn-secondary">목록으로</button>
-            	<button type="button" class="btn btn-primary">수정하기</button>
-            </div>
-            
-        </div>
-    </section>    
+ <section class="page-section" id="services" layout:fragment="content">
+ 
+	<div class="container" th:with="modify = ${brdDto.brdNo != null}">
+		<form name="brdForm">
+			<input type="hidden" name="noticeYn" th:value="${#strings.equals('notice', brdType) ? 'Y' : 'N'}">
+			<input type="hidden" name="secretYn" th:value="${modify ? brdDto.secretYn : 'Y'}">
+			
+			<div class="text-center mt90">
+				<h2 class="section-heading text-uppercase">공지사항</h2>
+	        </div>
+	        <div class="row mt90">
+	            <table>
+	            	<colgroup>
+	            		<col style="width:15%;"/>
+	            		<col style="width:35%;"/>
+	            		<col style="width:15%;"/>
+	            		<col style="width:35%;"/>
+	            	</colgroup>
+	            	<tbody>
+	            		<tr>
+	             		<th>번호</th>
+	             		<td th:text="${brdDto.brdNo}"></td>
+	             		<th>조회수</th>
+	             		<td th:text="${brdDto.viewCnt}"></td>
+	            		</tr>
+	            		<tr>
+	            			<th>제목</th>
+	             		<td>
+	             			<input type="text" class="form-control is-invalid" name="title" id="title" th:value="${brdDto.title}">
+	             		</td>
+	             		<th>등록일</th>
+	             		<td th:text="${modify ? #strings.substring(brdDto.regDts, 0, 10) : ''}">등록일</td>
+	            		</tr>
+	            		<tr>
+	            			<th>내용</th>
+	            			<td colspan="3">
+	            				<textarea name="content" id="content">[[${brdDto.content}]]</textarea>
+	            			</td>
+	            		</tr>
+	            	</tbody>
+	            </table>
+	        </div>
+        
+	        <div class="tar mt30 text-center">
+	        	<button type="button" class="btn btn-secondary" onclick="goList();">목록으로</button>
+	        	<button type="submit" class="btn btn-primary">저장하기</button>
+	        </div>
+        </form>
+        
+    </div>
+     
+	<script type="text/javascript">
+		var mode;
+		
+		$(document).ready(function() {
+			mode = !"[[${brdDto.brdNo}]]" ? "insert" : "modify";	//등록, 수정 구분자
+			
+			$("form[name=brdForm]").submit(function(e) {
+				if(!confirm("저장하시겠습니까?")) {
+					e.preventDefault();
+				}else{
+					$(this).attr("method", "post");
+					$(this).attr("action", "[[@{/board}]]/[[${brdType}]]/modify/[[${brdDto.brdNo}]]");
+				}
+			});
+		});
+		
+		//목록으로 이동
+		function goList() {
+			location.href="[[@{/board}]]/[[${brdType}]]";
+		}
+		
+		//게시글 저장
+		function saveBoard() {
+			if(!confirm("저장하시겠습니까?")) {
+				return;
+			}
+			
+			var brdForm = $("form[name=brdForm]").serializeJson();
+			brdForm.modNo = "bk";
+			brdForm.modUrl = "[[@{/board}]]/[[${brdType}]]/modify";
+			brdForm.content = $("#content").val();
+			
+			if(mode = "insert") {
+				
+			}
+			else {
+				brdForm.brdNo = "[[${brdDto.brdNo}]]";
+			}
+
+			$.ajax({
+		        type: "post",
+		        url: "[[@{/board}]]/[[${brdType}]]/modify/[[${brdDto.brdNo}]]",
+		        dataType: JSON.stringify(),
+				data : brdForm,
+		        error: function(e) {
+		          alert("게시물 저장시 오류가 발생하였습니다.");
+		        },
+		        success: function(rslt) {
+ 		          console.log("result : " + rslt);
+		        }
+		      });
+		}
+	
+	</script>
+     
+</section>    
     
 	
 </body>

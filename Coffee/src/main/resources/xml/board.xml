@@ -4,37 +4,6 @@
 
 <mapper namespace="com.coffee.mapper.BoardMapper">
 
-	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="brdNo">
-		/* QUERY_ID(insertBoard) */
-		INSERT INTO TBRD_BRD_BAS (
-			TITLE
-			, CONTENT	
-			, WRITER
-    		, VIEW_CNT
-    		, NOTICE_YN
-    		, SECRET_YN
-    		, REG_NO
-    		, REG_URL
-    		, REG_DTS
-    		, MOD_NO
-    		, MOD_URL
-    		, MOD_DTS
-		) VALUES (
-			#{title}
-			, #{content}
-			, #{writer}
-			, #{viewCnt}
-			, #{noticeYn}
-			, #{secretYn}
-			, #{regNo}
-			, #{regUrl}
-			, NOW()
-			, #{modNo}
-			, #{modUrl}
-			, NOW()
-		)
-	</insert>
-	
 	<select id="selectBoardList" parameterType="String" resultType="com.coffee.entity.board.TbrdBrdBas">
 		/* QUERY_ID(selectBoardList) */
 		SELECT
@@ -82,5 +51,47 @@
 			VIEW_CNT = VIEW_CNT + 1
 		WHERE BRD_NO = #{brdNo}
 	</update>
+	
+	<update id="modifyBrdBas" parameterType="com.coffee.entity.board.TbrdBrdBas">
+		/* QUERY_ID(modifyBrdBas) */
+		UPDATE TBRD_BRD_BAS SET
+			TITLE = #{title}
+		    , CONTENT = #{content}
+		    , SECRET_YN = #{secretYn}
+		    , MOD_NO = #{modNo}
+		    , MOD_URL = #{modUrl}
+			, MOD_DTS = NOW()
+		WHERE BRD_NO = #{brdNo}
+	</update>
+	
+	<insert id="insertBrdBas" parameterType="com.coffee.entity.board.TbrdBrdBas" useGeneratedKeys="true" 
+			keyProperty="brdNo" keyColumn="BRD_NO">
+		/* QUERY_ID(modifyBrdBas) */
+		INSERT INTO TBRD_BRD_BAS (
+			TITLE
+			, CONTENT
+			, WRITER
+			, NOTICE_YN
+			, SECRET_YN
+			, REG_NO
+			, REG_URL
+			, REG_DTS
+			, MOD_NO
+			, MOD_URL
+			, MOD_DTS
+		) VALUES (
+			#{title}
+			, #{content}
+			, #{writer}
+			, #{noticeYn}
+			, #{secretYn}
+			, #{regNo}
+			, #{regUrl}
+			, NOW()
+			, #{modNo}
+			, #{modUrl}
+			, NOW()
+		)
+	</insert>
 
 </mapper>
