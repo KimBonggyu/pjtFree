@@ -116,14 +116,13 @@ public class BoardController {
 	public String postModifyBoard(@PathVariable("brdType") String brdType, TbrdBrdBas brdBas, ModelAndView mv) throws Exception{
 		
 		HashMap<String, String> result = new HashMap<String, String>();
-		long brdNo = 0;
 		try {
 			if(null != brdBas.getBrdNo()) {
 				System.out.println("postModifyBoard : " + brdBas);
 				boardService.modifyBrdBas(brdBas);
 			}else {
 				System.out.println("postModifyBoard : " + brdBas);
-				brdNo = boardService.insertBrdBas(brdBas);
+				boardService.insertBrdBas(brdBas);
 			}
 		} catch (Exception e) {
 			throw new Exception();
